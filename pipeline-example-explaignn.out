@@ -1,0 +1,217 @@
+2023-05-20 21:01:20,481 __main__     INFO     Loading QU module
+2023-05-20 21:01:24,104 __main__     INFO     Loading ERS module
+2023-05-20 21:01:24,105 explaignn.evidence_retrieval_scoring.clocq_er INFO     Loading ER cache from path _data/convmix/explaignn/er_cache.pickle.
+2023-05-20 21:06:36,753 explaignn.evidence_retrieval_scoring.clocq_er INFO     ER cache successfully loaded.
+2023-05-20 21:06:36,754 explaignn.evidence_retrieval_scoring.wikipedia_retriever.wikipedia_retriever INFO     Loading Wikipedia dump from path _data/convmix/wikipedia_dump.pickle.
+2023-05-20 21:08:37,224 explaignn.evidence_retrieval_scoring.wikipedia_retriever.wikipedia_retriever INFO     Wikipedia dump successfully loaded.
+2023-05-20 21:12:29,749 __main__     INFO     Loading HA module
+2023-05-20 21:12:29,750 explaignn.heterogeneous_answering.graph_neural_network.iterative_gnns INFO     Config: {
+    "name": "explaignn",
+    "log_level": "INFO",
+    "dev": false,
+    "qu": "sr",
+    "ers": "rers",
+    "ha": "explaignn",
+    "source_combinations": [
+        [
+            "kb"
+        ],
+        [
+            "text"
+        ],
+        [
+            "table"
+        ],
+        [
+            "info"
+        ],
+        [
+            "kb",
+            "text"
+        ],
+        [
+            "kb",
+            "table"
+        ],
+        [
+            "kb",
+            "info"
+        ],
+        [
+            "text",
+            "table"
+        ],
+        [
+            "text",
+            "info"
+        ],
+        [
+            "table",
+            "info"
+        ],
+        [
+            "kb",
+            "text",
+            "table",
+            "info"
+        ]
+    ],
+    "path_to_stopwords": "_data/stopwords.txt",
+    "path_to_labels": "_data/labels.pickle",
+    "path_to_types": "_data/types.pickle",
+    "path_to_wikipedia_mappings": "_data/wikipedia_mappings.pickle",
+    "path_to_wikidata_mappings": "_data/wikidata_mappings.pickle",
+    "benchmark": "convmix",
+    "benchmark_path": "_benchmarks/convmix",
+    "train_input_path": "train_set/train_set_ALL.json",
+    "dev_input_path": "dev_set/dev_set_ALL.json",
+    "test_input_path": "test_set/test_set_ALL.json",
+    "path_to_annotated": "_intermediate_representations/convmix",
+    "path_to_intermediate_results": "_intermediate_representations/convmix",
+    "clocq_params": {
+        "h_match": 0.4,
+        "h_rel": 0.2,
+        "h_conn": 0.3,
+        "h_coh": 0.1,
+        "d": 20,
+        "k": "AUTO",
+        "p_setting": 1000,
+        "bm25_limit": false
+    },
+    "clocq_p": 1000,
+    "clocq_use_api": true,
+    "clocq_host": "https://clocq.mpi-inf.mpg.de/api",
+    "clocq_port": "443",
+    "ds_sources": [
+        "kb"
+    ],
+    "ds_prune_noisy_qa_pairs": false,
+    "sr_relation_shared_active": false,
+    "sr_remove_stopwords": false,
+    "tr_transitive_relevances": false,
+    "tr_extract_dataset": false,
+    "sr_architecture": "BART",
+    "sr_model_path": "_data/convmix/explaignn/sr_model.bin",
+    "sr_max_input_length": 512,
+    "history_separator": " ||| ",
+    "sr_delimiter": "||",
+    "sr_avoid_hallucination": true,
+    "sr_k": 10,
+    "sr_num_train_epochs": 5,
+    "sr_per_device_train_batch_size": 10,
+    "sr_per_device_eval_batch_size": 10,
+    "sr_warmup_steps": 500,
+    "sr_weight_decay": 0.01,
+    "sr_no_repeat_ngram_size": 2,
+    "sr_num_beams": 20,
+    "sr_early_stopping": true,
+    "sr_max_output_length": 30,
+    "ers_use_cache": true,
+    "ers_cache": "_data/convmix/explaignn/er_cache.pickle",
+    "ers_wikipedia_dump": "_data/convmix/wikipedia_dump.pickle",
+    "ers_wikipedia_to_wikidata_links_cache": "_data/convmix/cache_wikipedia_to_wikidata_links.pickle",
+    "ers_on_the_fly": true,
+    "evr_min_evidence_length": 3,
+    "evr_max_evidence_length": 200,
+    "evr_max_entities": 10,
+    "evs_max_evidences": 500,
+    "ha_max_answers": 50,
+    "ha_max_supporting_evidences": 5,
+    "gnn_encoder_lm": "DistilRoBERTa",
+    "gnn_encoder_linear": false,
+    "gnn_emb_dimension": 768,
+    "gnn_enc_sr_max_input": 30,
+    "gnn_enc_ev_max_input": 80,
+    "gnn_enc_ent_max_input": 60,
+    "gnn_model": "heterogeneous_gnn",
+    "gnn_num_layers": 3,
+    "gnn_answering": "multitask_bilinear",
+    "gnn_max_output_evidences": 5,
+    "gnn_shuffle_evidences": true,
+    "gnn_mask_question_entities": false,
+    "gnn_max_evidences": 500,
+    "gnn_max_entities": 1000,
+    "gnn_train_max_pos_evidences": 10,
+    "gnn_train_batch_size": 1,
+    "gnn_epochs": 5,
+    "gnn_learning_rate": 1e-05,
+    "gnn_weight_decay": 0.01,
+    "gnn_clipping_max_norm": 1.0,
+    "gnn_dropout": 0.0,
+    "gnn_train": [
+        {
+            "gnn_encoder": "alternating_encoder_cross_SR",
+            "gnn_model_path": "_data/convmix/explaignn/gnn/gnn-pruning.bin",
+            "gnn_multitask_answer_weight": 0.3,
+            "gnn_multitask_ev_weight": 0.7,
+            "gnn_decisive_metric": "answer_presence",
+            "gnn_max_evidences": 500,
+            "gnn_max_entities": 1000
+        },
+        {
+            "gnn_encoder": "full_encoder_cross_SR",
+            "gnn_add_entity_type": true,
+            "gnn_model_path": "_data/convmix/explaignn/gnn/gnn-answering.bin",
+            "gnn_multitask_answer_weight": 0.5,
+            "gnn_multitask_ev_weight": 0.5,
+            "gnn_decisive_metric": "p_at_1",
+            "gnn_max_evidences": 500,
+            "gnn_max_entities": 1000
+        }
+    ],
+    "gnn_eval_batch_size": 10,
+    "gnn_inference": [
+        {
+            "gnn_model_path": "_data/convmix/explaignn/gnn/gnn-pruning.bin",
+            "gnn_encoder": "alternating_encoder_cross_SR",
+            "gnn_max_evidences": 500,
+            "gnn_max_entities": 1000,
+            "gnn_max_output_evidences": 100
+        },
+        {
+            "gnn_encoder": "alternating_encoder_cross_SR",
+            "gnn_model_path": "_data/convmix/explaignn/gnn/gnn-pruning.bin",
+            "gnn_max_evidences": 100,
+            "gnn_max_entities": 400,
+            "gnn_max_output_evidences": 20
+        },
+        {
+            "gnn_encoder": "full_encoder_cross_SR",
+            "gnn_add_entity_type": true,
+            "gnn_model_path": "_data/convmix/explaignn/gnn/gnn-answering.bin",
+            "gnn_max_evidences": 20,
+            "gnn_max_entities": 80,
+            "gnn_max_output_evidences": 5
+        }
+    ]
+}
+Some weights of the model checkpoint at distilroberta-base were not used when initializing RobertaModel: ['lm_head.bias', 'lm_head.dense.bias', 'lm_head.dense.weight', 'lm_head.layer_norm.weight', 'lm_head.layer_norm.bias', 'lm_head.decoder.weight']
+- This IS expected if you are initializing RobertaModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing RobertaModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+2023-05-20 21:12:37,199 explaignn.heterogeneous_answering.graph_neural_network.graph_neural_network_1 INFO     Initialized model with 94520832 parameters.
+Some weights of the model checkpoint at distilroberta-base were not used when initializing RobertaModel: ['lm_head.bias', 'lm_head.dense.bias', 'lm_head.dense.weight', 'lm_head.layer_norm.weight', 'lm_head.layer_norm.bias', 'lm_head.decoder.weight']
+- This IS expected if you are initializing RobertaModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing RobertaModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+2023-05-20 21:12:40,516 explaignn.heterogeneous_answering.graph_neural_network.graph_neural_network_2 INFO     Initialized model with 94520832 parameters.
+Some weights of the model checkpoint at distilroberta-base were not used when initializing RobertaModel: ['lm_head.bias', 'lm_head.dense.bias', 'lm_head.dense.weight', 'lm_head.layer_norm.weight', 'lm_head.layer_norm.bias', 'lm_head.decoder.weight']
+- This IS expected if you are initializing RobertaModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing RobertaModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+2023-05-20 21:14:14,833 explaignn.heterogeneous_answering.graph_neural_network.graph_neural_network_3 INFO     Initialized model with 93930240 parameters.
+2023-05-20 21:14:16,105 __main__     INFO     Running QU
+2023-05-20 21:14:16,727 __main__     INFO     Time taken (QU): 0.622077465057373 seconds
+2023-05-20 21:14:16,727 __main__     INFO     Running ERS
+2023-05-20 21:14:17,276 __main__     INFO     Time taken (QU, ERS): 1.1718220710754395 seconds
+2023-05-20 21:14:17,277 __main__     INFO     Running HA
+2023-05-20 21:14:17,277 explaignn.heterogeneous_answering.graph_neural_network.iterative_gnns INFO     Started to measure time.
+2023-05-20 21:14:17,294 explaignn.heterogeneous_answering.graph_neural_network.iterative_gnns INFO     Inference - Ans. pres. (1): 1.0
+2023-05-20 21:14:17,294 explaignn.heterogeneous_answering.graph_neural_network.graph_neural_network_1 INFO     Running inference_on_turns function!
+  0%|          | 0/1 [00:00<?, ?it/s]10it [00:00, 19.06it/s]              10it [00:00, 19.06it/s]
+2023-05-20 21:14:17,826 explaignn.heterogeneous_answering.graph_neural_network.iterative_gnns INFO     Inference - Ans. pres. (1): 1.0
+2023-05-20 21:14:17,826 explaignn.heterogeneous_answering.graph_neural_network.graph_neural_network_2 INFO     Running inference_on_turns function!
+  0%|          | 0/1 [00:00<?, ?it/s]10it [00:00, 95.76it/s]              10it [00:00, 95.61it/s]
+2023-05-20 21:14:17,932 explaignn.heterogeneous_answering.graph_neural_network.iterative_gnns INFO     Inference - Ans. pres. (1): 1.0
+2023-05-20 21:14:17,932 explaignn.heterogeneous_answering.graph_neural_network.graph_neural_network_3 INFO     Running inference_on_turns function!
+  0%|          | 0/1 [00:00<?, ?it/s]10it [00:00, 147.95it/s]             
+2023-05-20 21:14:18,001 explaignn.heterogeneous_answering.graph_neural_network.iterative_gnns INFO     Time consumed (average per question): 0.7245814800262451
+2023-05-20 21:14:18,002 __main__     INFO     {'question_id': '0', 'turn': 0, 'answers': [{'id': 'Q445772', 'label': 'Nikolaj Coster-Waldau'}], 'question': 'Who played Jaime Lannister in Game of Thrones?', 'structured_representation': '|| Game of Thrones || Who played Jaime Lannister in || fictional human', 'top_evidences': [{'evidence_text': "Game of Thrones, Cersei's father is Tywin (Charles Dance), head of House Lannister and richest man in Westeros.", 'retrieved_for_entity': [{'id': 'Q23572', 'label': 'Game of Thrones'}], 'wikidata_entities': [{'id': 'Q2461698', 'label': 'World of Ice and Fire', 'g_id': 2, 'is_answer': False}, {'id': 'Q2728258', 'label': 'list of A Song of Ice and Fire characters', 'g_id': 3, 'is_answer': False}, {'id': 'Q12902445', 'label': 'Tywin Lannister', 'g_id': 4, 'is_answer': False}, {'id': 'Q23572', 'label': 'Game of Thrones', 'g_id': 0, 'is_answer': False}, {'id': 'Q309690', 'label': 'Charles Dance', 'g_id': 5, 'is_answer': False}], 'disambiguations': [('Game of Thrones', 'Q23572'), ('House Lannister', 'Q2728258'), ('Charles Dance', 'Q309690'), ('Westeros', 'Q2461698'), ('Tywin', 'Q12902445'), ('Game of Thrones', 'Q23572')], 'source': 'text', 'score': 0.11002420634031296, 'g_id': 1, 'idx': 1, 'is_answering_evidence': False}, {'evidence_text': 'Game of Thrones, cast member, Charles Dance, character role, Tywin Lannister', 'retrieved_for_entity': [{'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}, 'g_id': 0, 'is_answer': False}], 'wikidata_entities': [{'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}, 'g_id': 0, 'is_answer': False}, {'id': 'Q309690', 'label': 'Charles Dance', 'type': {'id': 'Q5', 'label': 'human'}, 'g_id': 5, 'is_answer': False}, {'id': 'Q12902445', 'label': 'Tywin Lannister', 'type': {'id': 'Q15632617', 'label': 'fictional human'}, 'g_id': 4, 'is_answer': False}], 'disambiguations': [('Game of Thrones', 'Q23572'), ('cast member', 'P161'), ('Charles Dance', 'Q309690'), ('character role', 'P453'), ('Tywin Lannister', 'Q12902445')], 'source': 'kb', 'score': 0.10321574658155441, 'g_id': 7, 'idx': 7, 'is_answering_evidence': False}, {'evidence_text': "Game of Thrones (2014 video game), Cersei Lannister (Lena Headey), the Queen Regent of the Seven Kingdoms serving in King's Landing and mother to King Joffrey Baratheon.", 'retrieved_for_entity': [{'id': 'Q18150581', 'label': 'Game of Thrones'}], 'wikidata_entities': [{'id': 'Q228789', 'label': 'Lena Headey', 'g_id': 13, 'is_answer': False}, {'id': '2014-01-01T00:00:00Z', 'label': '2014', 'g_id': 14, 'is_answer': False}, {'id': 'Q3665163', 'label': 'Cersei Lannister', 'g_id': 7, 'is_answer': False}, {'id': 'Q18150581', 'label': 'Game of Thrones', 'g_id': 15, 'is_answer': False, 'is_question_entity': True}, {'id': 'Q12900597', 'label': 'Joffrey Baratheon', 'g_id': 1, 'is_answer': False}], 'disambiguations': [('Game of Thrones (2014 video game)', 'Q18150581'), ('2014', '2014-01-01T00:00:00Z'), ('Joffrey Baratheon', 'Q12900597'), ('Cersei Lannister', 'Q3665163'), ('Lena Headey', 'Q228789'), ('Game of Thrones (2014 video game)', 'Q18150581')], 'source': 'text', 'score': 0.08981506526470184, 'g_id': 5, 'idx': 5, 'is_answering_evidence': False}, {'evidence_text': 'Game of Thrones, characters, Joffrey Baratheon', 'retrieved_for_entity': [{'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}, 'g_id': 0, 'is_answer': False, 'is_question_entity': True}], 'wikidata_entities': [{'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}, 'g_id': 0, 'is_answer': False, 'is_question_entity': True}, {'id': 'Q12900597', 'label': 'Joffrey Baratheon', 'type': {'id': 'Q15632617', 'label': 'fictional human'}, 'g_id': 1, 'is_answer': False}], 'disambiguations': [('Game of Thrones', 'Q23572'), ('characters', 'P674'), ('Joffrey Baratheon', 'Q12900597')], 'source': 'kb', 'score': 0.08883000910282135, 'g_id': 0, 'idx': 0, 'is_answering_evidence': False}, {'evidence_text': 'Joffrey Baratheon, present in work, Game of Thrones', 'retrieved_for_entity': [{'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}, 'g_id': 0, 'is_answer': False}], 'wikidata_entities': [{'id': 'Q12900597', 'label': 'Joffrey Baratheon', 'type': {'id': 'Q15632617', 'label': 'fictional human'}, 'g_id': 1, 'is_answer': False}, {'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}, 'g_id': 0, 'is_answer': False}], 'disambiguations': [('Joffrey Baratheon', 'Q12900597'), ('present in work', 'P1441'), ('Game of Thrones', 'Q23572')], 'source': 'kb', 'score': 0.08555424958467484, 'g_id': 13, 'idx': 13, 'is_answering_evidence': False}], 'num_evidences': [500], 'answer_presence': 0, 'answer_presence_per_src': {'kb': 1}, 'ranked_answers': [{'answer': {'id': 'Q12900597', 'label': 'Joffrey Baratheon', 'type': {'id': 'Q15632617', 'label': 'fictional human'}, 'g_id': 1, 'is_answer': False}, 'score': 0.24041956663131714, 'rank': 1, 'local_id': 1}, {'answer': {'id': 'Q12902445', 'label': 'Tywin Lannister', 'g_id': 4, 'is_answer': False}, 'score': 0.2300724983215332, 'rank': 2, 'local_id': 4}, {'answer': {'id': 'Q13634885', 'label': 'Robert Baratheon', 'type': {'id': 'Q15632617', 'label': 'fictional human'}, 'g_id': 12, 'is_answer': False}, 'score': 0.1750459522008896, 'rank': 3, 'local_id': 12}, {'answer': {'id': 'Q309690', 'label': 'Charles Dance', 'g_id': 5, 'is_answer': False}, 'score': 0.1615266352891922, 'rank': 4, 'local_id': 5}, {'answer': {'id': 'Q3665163', 'label': 'Cersei Lannister', 'g_id': 7, 'is_answer': False}, 'score': 0.07220081239938736, 'rank': 5, 'local_id': 7}, {'answer': {'id': 'Q445772', 'label': 'Nikolaj Coster-Waldau', 'type': {'id': 'Q5', 'label': 'human'}, 'g_id': 11, 'is_answer': True}, 'score': 0.038505613803863525, 'rank': 6, 'local_id': 11}, {'answer': {'id': 'Q228789', 'label': 'Lena Headey', 'g_id': 13, 'is_answer': False}, 'score': 0.030822178348898888, 'rank': 7, 'local_id': 13}, {'answer': {'id': 'Q3806180', 'label': 'Jaime Lannister', 'type': {'id': 'Q15632617', 'label': 'fictional human'}, 'g_id': 10, 'is_answer': False}, 'score': 0.01837068237364292, 'rank': 8, 'local_id': 10}, {'answer': {'id': 'Q2728258', 'label': 'list of A Song of Ice and Fire characters', 'g_id': 3, 'is_answer': False}, 'score': 0.01163328904658556, 'rank': 9, 'local_id': 3}, {'answer': {'id': 'Q2461698', 'label': 'World of Ice and Fire', 'g_id': 2, 'is_answer': False}, 'score': 0.010423687286674976, 'rank': 10, 'local_id': 2}, {'answer': {'id': 'Q342430', 'label': 'Mark Addy', 'g_id': 20, 'is_answer': False}, 'score': 0.007005858700722456, 'rank': 11, 'local_id': 20}, {'answer': {'id': 'Q2076759', 'label': 'Tyrion Lannister', 'g_id': 19, 'is_answer': False}, 'score': 0.0019250005716457963, 'rank': 12, 'local_id': 19}, {'answer': {'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}, 'g_id': 0, 'is_answer': False, 'is_question_entity': True}, 'score': 0.0011001421371474862, 'rank': 13, 'local_id': 0}, {'answer': {'id': 'Q310937', 'label': 'Peter Dinklage', 'g_id': 21, 'is_answer': False}, 'score': 0.0004891277058050036, 'rank': 14, 'local_id': 21}, {'answer': {'id': 'Q228642', 'label': 'Isabella of France', 'g_id': 9, 'is_answer': False}, 'score': 0.00023678566503804177, 'rank': 15, 'local_id': 9}, {'answer': {'id': 'Q214045', 'label': 'dwarf', 'g_id': 16, 'is_answer': False}, 'score': 0.0001442352804588154, 'rank': 16, 'local_id': 16}, {'answer': {'id': 'Q15228', 'label': 'The Lord of the Rings', 'g_id': 18, 'is_answer': False}, 'score': 4.355332930572331e-05, 'rank': 17, 'local_id': 18}, {'answer': {'id': 'Q5434357', 'label': 'Fantasy television', 'g_id': 17, 'is_answer': False}, 'score': 1.235467516380595e-05, 'rank': 18, 'local_id': 17}, {'answer': {'id': 'Q18150581', 'label': 'Game of Thrones', 'g_id': 15, 'is_answer': False, 'is_question_entity': True}, 'score': 1.164730292657623e-05, 'rank': 19, 'local_id': 15}, {'answer': {'id': '2014-01-01T00:00:00Z', 'label': '2014', 'g_id': 14, 'is_answer': False}, 'score': 6.5725412241590675e-06, 'rank': 20, 'local_id': 14}, {'answer': {'id': '1295-01-01T00:00:00Z', 'label': '1295', 'g_id': 8, 'is_answer': False}, 'score': 1.880559238998103e-06, 'rank': 21, 'local_id': 8}, {'answer': {'id': '1358-01-01T00:00:00Z', 'label': '1358', 'g_id': 6, 'is_answer': False}, 'score': 1.3193799759392277e-06, 'rank': 22, 'local_id': 6}], 'p_at_1': 0.0, 'mrr': 0.16666666666666666, 'h_at_5': 0.0, 'supporting_evidences': [{'evidence_text': "Game of Thrones, Cersei's father is Tywin (Charles Dance), head of House Lannister and richest man in Westeros.", 'retrieved_for_entity': [{'id': 'Q23572', 'label': 'Game of Thrones'}], 'wikidata_entities': [{'id': 'Q2461698', 'label': 'World of Ice and Fire', 'g_id': 2, 'is_answer': False}, {'id': 'Q2728258', 'label': 'list of A Song of Ice and Fire characters', 'g_id': 3, 'is_answer': False}, {'id': 'Q12902445', 'label': 'Tywin Lannister', 'g_id': 4, 'is_answer': False}, {'id': 'Q23572', 'label': 'Game of Thrones', 'g_id': 0, 'is_answer': False}, {'id': 'Q309690', 'label': 'Charles Dance', 'g_id': 5, 'is_answer': False}], 'disambiguations': [('Game of Thrones', 'Q23572'), ('House Lannister', 'Q2728258'), ('Charles Dance', 'Q309690'), ('Westeros', 'Q2461698'), ('Tywin', 'Q12902445'), ('Game of Thrones', 'Q23572')], 'source': 'text', 'score': 0.11002420634031296, 'g_id': 1, 'idx': 1, 'is_answering_evidence': False}, {'evidence_text': 'Game of Thrones, cast member, Charles Dance, character role, Tywin Lannister', 'retrieved_for_entity': [{'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}, 'g_id': 0, 'is_answer': False}], 'wikidata_entities': [{'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}, 'g_id': 0, 'is_answer': False}, {'id': 'Q309690', 'label': 'Charles Dance', 'type': {'id': 'Q5', 'label': 'human'}, 'g_id': 5, 'is_answer': False}, {'id': 'Q12902445', 'label': 'Tywin Lannister', 'type': {'id': 'Q15632617', 'label': 'fictional human'}, 'g_id': 4, 'is_answer': False}], 'disambiguations': [('Game of Thrones', 'Q23572'), ('cast member', 'P161'), ('Charles Dance', 'Q309690'), ('character role', 'P453'), ('Tywin Lannister', 'Q12902445')], 'source': 'kb', 'score': 0.10321574658155441, 'g_id': 7, 'idx': 7, 'is_answering_evidence': False}, {'evidence_text': "Game of Thrones (2014 video game), Cersei Lannister (Lena Headey), the Queen Regent of the Seven Kingdoms serving in King's Landing and mother to King Joffrey Baratheon.", 'retrieved_for_entity': [{'id': 'Q18150581', 'label': 'Game of Thrones'}], 'wikidata_entities': [{'id': 'Q228789', 'label': 'Lena Headey', 'g_id': 13, 'is_answer': False}, {'id': '2014-01-01T00:00:00Z', 'label': '2014', 'g_id': 14, 'is_answer': False}, {'id': 'Q3665163', 'label': 'Cersei Lannister', 'g_id': 7, 'is_answer': False}, {'id': 'Q18150581', 'label': 'Game of Thrones', 'g_id': 15, 'is_answer': False, 'is_question_entity': True}, {'id': 'Q12900597', 'label': 'Joffrey Baratheon', 'g_id': 1, 'is_answer': False}], 'disambiguations': [('Game of Thrones (2014 video game)', 'Q18150581'), ('2014', '2014-01-01T00:00:00Z'), ('Joffrey Baratheon', 'Q12900597'), ('Cersei Lannister', 'Q3665163'), ('Lena Headey', 'Q228789'), ('Game of Thrones (2014 video game)', 'Q18150581')], 'source': 'text', 'score': 0.08981506526470184, 'g_id': 5, 'idx': 5, 'is_answering_evidence': False}, {'evidence_text': 'Game of Thrones, characters, Joffrey Baratheon', 'retrieved_for_entity': [{'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}, 'g_id': 0, 'is_answer': False, 'is_question_entity': True}], 'wikidata_entities': [{'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}, 'g_id': 0, 'is_answer': False, 'is_question_entity': True}, {'id': 'Q12900597', 'label': 'Joffrey Baratheon', 'type': {'id': 'Q15632617', 'label': 'fictional human'}, 'g_id': 1, 'is_answer': False}], 'disambiguations': [('Game of Thrones', 'Q23572'), ('characters', 'P674'), ('Joffrey Baratheon', 'Q12900597')], 'source': 'kb', 'score': 0.08883000910282135, 'g_id': 0, 'idx': 0, 'is_answering_evidence': False}, {'evidence_text': 'Joffrey Baratheon, present in work, Game of Thrones', 'retrieved_for_entity': [{'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}, 'g_id': 0, 'is_answer': False}], 'wikidata_entities': [{'id': 'Q12900597', 'label': 'Joffrey Baratheon', 'type': {'id': 'Q15632617', 'label': 'fictional human'}, 'g_id': 1, 'is_answer': False}, {'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}, 'g_id': 0, 'is_answer': False}], 'disambiguations': [('Joffrey Baratheon', 'Q12900597'), ('present in work', 'P1441'), ('Game of Thrones', 'Q23572')], 'source': 'kb', 'score': 0.08555424958467484, 'g_id': 13, 'idx': 13, 'is_answering_evidence': False}], 'answering_evidences': [{'evidence_text': "Game of Thrones (2014 video game), Cersei Lannister (Lena Headey), the Queen Regent of the Seven Kingdoms serving in King's Landing and mother to King Joffrey Baratheon.", 'source': 'text', 'retrieved_for_entity': [{'id': 'Q18150581', 'label': 'Game of Thrones'}], 'disambiguations': [('Game of Thrones (2014 video game)', 'Q18150581'), ('2014', '2014-01-01T00:00:00Z'), ('Joffrey Baratheon', 'Q12900597'), ('Cersei Lannister', 'Q3665163'), ('Lena Headey', 'Q228789'), ('Game of Thrones (2014 video game)', 'Q18150581')], 'wikidata_entities': [{'id': 'Q228789', 'label': 'Lena Headey'}, {'id': '2014-01-01T00:00:00Z', 'label': '2014'}, {'id': 'Q3665163', 'label': 'Cersei Lannister'}, {'id': 'Q18150581', 'label': 'Game of Thrones'}, {'id': 'Q12900597', 'label': 'Joffrey Baratheon'}], 'connectivity_details': (2, ['Q12900597']), 'score': 5.182386079960255}, {'evidence_text': 'Game of Thrones, characters, Joffrey Baratheon', 'wikidata_entities': [{'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}}, {'id': 'Q12900597', 'label': 'Joffrey Baratheon', 'type': {'id': 'Q15632617', 'label': 'fictional human'}}], 'disambiguations': [('Game of Thrones', 'Q23572'), ('characters', 'P674'), ('Joffrey Baratheon', 'Q12900597')], 'retrieved_for_entity': [{'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}}], 'source': 'kb', 'kb_fact': [{'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}}, {'id': 'P674', 'label': 'characters', 'type': None}, {'id': 'Q12900597', 'label': 'Joffrey Baratheon', 'type': {'id': 'Q15632617', 'label': 'fictional human'}}], 'score': 4.194156956336913}, {'evidence_text': 'Joffrey Baratheon, present in work, Game of Thrones', 'wikidata_entities': [{'id': 'Q12900597', 'label': 'Joffrey Baratheon', 'type': {'id': 'Q15632617', 'label': 'fictional human'}}, {'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}}], 'disambiguations': [('Joffrey Baratheon', 'Q12900597'), ('present in work', 'P1441'), ('Game of Thrones', 'Q23572')], 'retrieved_for_entity': [{'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}}], 'source': 'kb', 'kb_fact': [{'id': 'Q12900597', 'label': 'Joffrey Baratheon', 'type': {'id': 'Q15632617', 'label': 'fictional human'}}, {'id': 'P1441', 'label': 'present in work', 'type': None}, {'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}}], 'score': 3.983415127300361}, {'evidence_text': 'Game of Thrones, characters, Jaime Lannister', 'wikidata_entities': [{'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}}, {'id': 'Q3806180', 'label': 'Jaime Lannister', 'type': {'id': 'Q15632617', 'label': 'fictional human'}}], 'disambiguations': [('Game of Thrones', 'Q23572'), ('characters', 'P674'), ('Jaime Lannister', 'Q3806180')], 'retrieved_for_entity': [{'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}}], 'source': 'kb', 'kb_fact': [{'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}}, {'id': 'P674', 'label': 'characters', 'type': None}, {'id': 'Q3806180', 'label': 'Jaime Lannister', 'type': {'id': 'Q15632617', 'label': 'fictional human'}}], 'score': 17.07663286772422}, {'evidence_text': 'Jaime Lannister, present in work, Game of Thrones', 'wikidata_entities': [{'id': 'Q3806180', 'label': 'Jaime Lannister', 'type': {'id': 'Q15632617', 'label': 'fictional human'}}, {'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}}], 'disambiguations': [('Jaime Lannister', 'Q3806180'), ('present in work', 'P1441'), ('Game of Thrones', 'Q23572')], 'retrieved_for_entity': [{'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}}], 'source': 'kb', 'kb_fact': [{'id': 'Q3806180', 'label': 'Jaime Lannister', 'type': {'id': 'Q15632617', 'label': 'fictional human'}}, {'id': 'P1441', 'label': 'present in work', 'type': None}, {'id': 'Q23572', 'label': 'Game of Thrones', 'type': {'id': 'Q5398426', 'label': 'television series'}}], 'score': 16.21859133952329}]}
+2023-05-20 21:14:18,002 __main__     INFO     Time taken (ALL): 1.8974878787994385 seconds
